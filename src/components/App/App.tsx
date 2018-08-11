@@ -9,6 +9,11 @@
 import React from 'react'
 import { Component } from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from '../../reducers';
+
+import Home from '../../comtainers/Home/Home';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -17,15 +22,20 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+const store = createStore(rootReducer);
+
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>まじでふざけんなやっとか</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Text style={styles.welcome}>ReactNative+Redux+TypeScript Example</Text>
+          <Text style={styles.instructions}>Happy coding :)</Text>
+          <Text style={styles.instructions}>{instructions}</Text>
+          {/*Home Componentを呼び出し*/}
+          <Home messageFromApp='Appからの温かいメッセージです。' />
+        </View>
+      </Provider>
     );
   }
 }
