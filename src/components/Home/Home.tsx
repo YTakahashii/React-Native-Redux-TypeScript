@@ -2,7 +2,6 @@ import * as React from 'react'
 import { View, Text, Button } from 'react-native';
 import HomeProps from './HomeProps';
 
-type HomeState = {}
 export default class Home extends React.Component<HomeProps> {
     public render() {
         const { messageFromApp, sampleState, activateSample, closeSample } = this.props;
